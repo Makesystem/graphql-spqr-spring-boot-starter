@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>makesystem</groupId>
+    <groupId>io.leangen.graphql</groupId>
     <artifactId>graphql-spqr-spring-boot-starter-parent</artifactId>
     <version>1.0.1.M2</version>
     <packaging>pom</packaging>
@@ -127,6 +127,16 @@
     <profiles>
         <profile>
             <id>release</id>
+            <repositories>
+                <repository>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <id>makesystemltda</id>
+                    <url>
+                        https://pkgs.dev.azure.com/makesystemltda/_packaging/makesystemltda/maven/v1</url>
+                </repository>
+            </repositories>
             <build>
                 <plugins>
 
