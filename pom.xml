@@ -3,7 +3,7 @@
 
     <groupId>io.leangen.graphql</groupId>
     <artifactId>graphql-spqr-spring-boot-starter-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1.M1</version>
     <packaging>pom</packaging>
 
     <inceptionYear>2018</inceptionYear>
