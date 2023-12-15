@@ -31,10 +31,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
 
         <spqr.version>0.12.3</spqr.version>
-        <spring-boot.version>3.1.1</spring-boot.version>
+        <spring-boot.version>3.2.0</spring-boot.version>
     </properties>
 
     <modules>
@@ -87,7 +87,10 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.11.0</version>
                     <configuration>
-                        <release>${java.version}</release>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <parameters>true</parameters>
+                        <forceJavacCompilerUse>true</forceJavacCompilerUse>
                     </configuration>
                 </plugin>
 
