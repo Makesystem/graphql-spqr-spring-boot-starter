@@ -1,0 +1,59 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+trigger:
+  branches:
+    include:
+      - master
+  tags:
+    include:
+      - '*'
+  paths:
+    exclude:
+      - '*'
+
+variables:
+  BuildParameters.mavenPOMFile: pom.xml
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: >-
+    -Xmx2048m
+    -Xms512m
+    -Xss50m
+    -Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)
+    -Dorg.apache.maven.user-settings=$(mvnSettings.secureFilePath)
+    -Dmaven.wagon.http.ssl.insecure=true
+    -Dmaven.wagon.http.ssl.allowall=true
+    -Dmaven.wagon.http.ssl.ignore.validity.dates=true
+
+pool:
+  vmImage: ubuntu-latest
+container: maven:3.9.5-eclipse-temurin-21
+
+steps:
+- task: DownloadSecureFile@1
+  name: mvnSettings
+  displayName: Download settings.xml
+  inputs:
+    secureFile: 'settings.xml'
+
+- task: Cache@2
+  displayName: Retrive Maven Cache
+  inputs:
+    key: maven | master
+    path: $(MAVEN_CACHE_FOLDER)
+    restoreKeys: >-
+            maven | master
+            maven
+
+- task: Maven@3
+  displayName: Download Maven Dependencies
+  inputs:
+    mavenPOMFile: $(BuildParameters.mavenPOMFile)
+    goals: 'deploy'
+    options: --settings $(mvnSettings.secureFilePath)
+    publishJUnitResults: false
+    jdkVersion: 1.21
+    javaHomeOption: 'path'
+    jdkDirectory: '/opt/java/openjdk'
+    mavenOpts: $(MAVEN_OPTS)
