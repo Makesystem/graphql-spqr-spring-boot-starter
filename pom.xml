@@ -10,6 +10,20 @@
     <name>GraphQL SPQR Spring Boot 3 Starter</name>
     <url>https://github.com/leangen/graphql-spqr-spring-boot-starter</url>
     <description>Spring Boot 3 starter powered by GraphQL SPQR</description>
+
+    <distributionManagement>
+        <repository>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+        <id>makesystemltda</id>
+        <url>https://pkgs.dev.azure.com/makesystemltda/_packaging/makesystemltda/maven/v1</url>
+        </repository>
+    </distributionManagement>
+
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -115,11 +129,6 @@
             <id>release</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <inherited>true</inherited>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <version>3.1.1</version>
-                    </plugin>
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
